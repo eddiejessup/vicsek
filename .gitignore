@@ -1,0 +1,6 @@
+*.pdf
+*.pyc
+.DS_Store
+particle_numerics.c
+*.so
+build/
