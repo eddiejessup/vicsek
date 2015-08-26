@@ -9,7 +9,7 @@ from model import AngularVicsekModel, VectorialVicsekModel
 def plot_vicsek(model, i):
     fig = plt.figure()
     ax = fig.gca()
-    q = ax.quiver(model.r, model.L * model.u())
+    q = ax.quiver(model.r, model.L * model.u)
     ax.set_xlim(-model.L_half, model.L_half)
     ax.set_ylim(-model.L_half, model.L_half)
     ax.set_aspect('equal')
@@ -18,7 +18,7 @@ def plot_vicsek(model, i):
     for _ in range(i):
         model.iterate()
         q.set_offsets(model.r)
-        q.set_UVC(*(model.L * model.u().T))
+        q.set_UVC(*(model.L * model.u.T))
         fig.canvas.draw()
     return model.macro_u_mag()
 
@@ -48,7 +48,7 @@ def make_illustration_snapshot():
 
     s = 2.0
     ax.quiver(model.r[:, 0], model.r[:, 1],
-              s * model.L * model.u()[:, 0], s * model.L * model.u()[:, 1],
+              s * model.L * model.u[:, 0], s * model.L * model.u[:, 1],
               C,
               pivot='mid', edgecolor='none')
     ax.axis('off')
@@ -97,7 +97,7 @@ def get_vicsek_stats():
         mags = []
         for _ in range(1000):
             model.iterate()
-            mags.append(model.macro_u_mag())
+            mags.append(model.macro_u_mag)
         print(eta, np.mean(mags), sem(mags), np.var(mags),
               np.var(mags) / np.sqrt(len(mags)))
 
