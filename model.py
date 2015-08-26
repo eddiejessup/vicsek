@@ -1,7 +1,6 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
 import matplotlib.pyplot as plt
-from ciabatta.cell_list import intro
 from particle_numerics import vicsek_angular, vicsek_vectorial
 
 
@@ -38,10 +37,6 @@ class BaseVicsekModel(object):
         self.r += self.v()
         self.r[self.r > self.L / 2.0] -= self.L
         self.r[self.r < -self.L / 2.0] += self.L
-
-    def _neighbs(self, i):
-        inters, intersi = intro.get_inters(self.r, self.L, self.r_v)
-        return inters[i, :intersi[i]]
 
     @abstractmethod
     def iterate(self):
