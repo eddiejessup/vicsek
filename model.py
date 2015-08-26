@@ -1,6 +1,5 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
-import matplotlib.pyplot as plt
 from particle_numerics import vicsek_angular, vicsek_vectorial
 
 
@@ -59,20 +58,6 @@ class BaseVicsekModel(object):
     @abstractmethod
     def iterate(self):
         self._move_wrap()
-
-    def snapshot(self, ax=None, demo=False):
-        if ax is None:
-            ax = plt.gca()
-        ax.set_xlim(-self.L_half, self.L_half)
-        ax.set_ylim(-self.L_half, self.L_half)
-        ax.set_aspect('equal')
-
-        s = 2.0
-        ax.quiver(self.r[:, 0], self.r[:, 1],
-                  s * self.L * self.u()[:, 0], s * self.L * self.u()[:, 1],
-                  pivot='mid', edgecolor='none')
-        ax.axis('off')
-        return ax
 
 
 class AngularVicsekModel(BaseVicsekModel):

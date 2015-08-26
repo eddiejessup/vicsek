@@ -66,7 +66,16 @@ def make_ordered_snapshot():
     ax = fig.gca()
     ejm_rcparams.set_pretty_plots(use_latex=True, use_pgf=True)
     ejm_rcparams.prettify_axes(ax)
-    model.snapshot(ax)
+
+    ax.set_xlim(-model.L_half, model.L_half)
+    ax.set_ylim(-model.L_half, model.L_half)
+    ax.set_aspect('equal')
+    s = 2.0
+    ax.quiver(model.r[:, 0], model.r[:, 1],
+              s * model.L * model.u[:, 0], s * model.L * model.u[:, 1],
+              pivot='mid', edgecolor='none')
+    ax.axis('off')
+
     plt.savefig('vicsek_snapshot_ordered.pdf', bbox_inches='tight',
                 transparent=True)
 
@@ -80,7 +89,15 @@ def make_disordered_snapshot():
     ax = fig.gca()
     ejm_rcparams.set_pretty_plots(use_latex=True, use_pgf=True)
     ejm_rcparams.prettify_axes(ax)
-    model.snapshot(ax)
+    ax.set_xlim(-model.L_half, model.L_half)
+    ax.set_ylim(-model.L_half, model.L_half)
+    ax.set_aspect('equal')
+    s = 2.0
+    ax.quiver(model.r[:, 0], model.r[:, 1],
+              s * model.L * model.u[:, 0], s * model.L * model.u[:, 1],
+              pivot='mid', edgecolor='none')
+    ax.axis('off')
+
     plt.savefig('vicsek_snapshot_disordered.pdf', bbox_inches='tight',
                 transparent=True)
 
