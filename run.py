@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import sem
 from ciabatta import ejm_rcparams
-from model import AngularVicsekModel, VectorialVicsekModel
+from model import vicsek_model_factory
 
 
 def plot_vicsek(model, i):
@@ -26,7 +26,8 @@ def plot_vicsek(model, i):
 def make_illustration_snapshot():
     fig = plt.figure()
     ax = fig.gca()
-    model = AngularVicsekModel(n=200, L=100.0, eta=0.2, v_0=0.5)
+    model = vicsek_model_factory(model='angular',
+                                 n=200, L=100.0, eta=0.2, v_0=0.5)
     for _ in range(100):
         model.iterate()
     ejm_rcparams.set_pretty_plots(use_latex=True, use_pgf=True)
@@ -58,7 +59,8 @@ def make_illustration_snapshot():
 
 
 def make_ordered_snapshot():
-    model = AngularVicsekModel(n=100, L=100.0, eta=0.05, v_0=0.5)
+    model = vicsek_model_factory(model='angular',
+                                 n=100, L=100.0, eta=0.05, v_0=0.5)
     for _ in range(100):
         model.iterate()
 
@@ -81,7 +83,8 @@ def make_ordered_snapshot():
 
 
 def make_disordered_snapshot():
-    model = AngularVicsekModel(n=100, L=100.0, eta=0.8, v_0=0.5)
+    model = vicsek_model_factory(model='angular',
+                                 n=100, L=100.0, eta=0.8, v_0=0.5)
     for _ in range(100):
         model.iterate()
 
@@ -104,7 +107,7 @@ def make_disordered_snapshot():
 
 def get_vicsek_stats():
     for eta in np.linspace(0.0, 0.8, 40):
-        model = AngularVicsekModel(n=2048, L=32.0, eta=eta, v_0=0.5)
+        model = vicsek_model_factory(model='angular', n=2048, L=32.0, eta=eta, v_0=0.5)
 
         # Equilibrate
         for _ in range(100):
@@ -120,4 +123,5 @@ def get_vicsek_stats():
 
 
 if __name__ == '__main__':
-    plot_vicsek(AngularVicsekModel(n=200, L=50.0, eta=0.05, v_0=0.5), 100)
+    plot_vicsek(vicsek_model_factory(model='angular',
+                                     n=200, L=50.0, eta=0.05, v_0=0.5), 100)

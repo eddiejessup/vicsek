@@ -74,3 +74,16 @@ class VectorialVicsekModel(BaseVicsekModel):
         self.th[...] = vicsek_vectorial(self.r, self.th, self.L, self.r_v,
                                         self.eta)
         super(VectorialVicsekModel, self).iterate()
+
+
+def vicsek_model_factory(model, **model_args):
+    '''Make a VicsekModel object
+
+    model: one of ('angular', 'vectorial')
+    '''
+    if model == 'angular':
+        return AngularVicsekModel(**model_args)
+    elif model == 'vectorial':
+        return VectorialVicsekModel(**model_args)
+    else:
+        raise ValueError('Invalid model string')
