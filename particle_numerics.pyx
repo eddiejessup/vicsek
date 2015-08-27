@@ -1,5 +1,4 @@
 import numpy as np
-from ciabatta import vector
 cimport numpy as np
 cimport cython
 import cmath
