@@ -6,7 +6,7 @@ from ciabatta import ejm_rcparams
 from model import vicsek_model_factory
 
 
-def plot_vicsek(model, i):
+def plot_vicsek(model, n):
     fig = plt.figure()
     ax = fig.gca()
     q = ax.quiver(model.r, model.L * model.u)
@@ -15,7 +15,7 @@ def plot_vicsek(model, i):
     ax.set_aspect('equal')
     plt.ion()
     plt.show()
-    for _ in range(i):
+    for _ in range(n):
         model.iterate()
         q.set_offsets(model.r)
         q.set_UVC(*(model.L * model.u.T))
