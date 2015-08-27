@@ -1,7 +1,6 @@
 from __future__ import print_function, division
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import sem
 from ciabatta import ejm_rcparams
 from model import vicsek_model_factory
 
@@ -103,20 +102,34 @@ def make_disordered_snapshot():
                 transparent=True)
 
 
-def get_vicsek_stats():
-    for eta in np.linspace(0.0, 0.8, 40):
-        m = vicsek_model_factory(model='angular', n=2048, L=32.0, eta=eta, v_0=0.5)
+def eta_scan(model, n, L, v_0, num_equil, num_measure, etas):
+    for eta in etas:
+        m = vicsek_model_factory(model=model, n=n, L=L, eta=eta, v_0=v_0)
         # Equilibrate
-        for _ in range(100):
+        for _ in range(num_equil):
             m.iterate()
         # Take measurements
         mags = []
-        for _ in range(1000):
+        for _ in range(num_measure):
             m.iterate()
             mags.append(m.macro_u_mag)
-        print(eta, np.mean(mags), sem(mags), np.var(mags),
-              np.var(mags) / np.sqrt(len(mags)))
+        yield eta, np.mean(mags), np.std(mags), len(mags)
 
+
+def make_vicsek_stats():
+    n = 2048
+    L = 32.0
+    v_0 = 0.5
+    num_equil = 100
+    num_measure = 500
+
+    for model in ('angular', 'vectorial'):
+        if model == 'angular':
+            etas = np.linspace(0.6, 0.8, 20)
+        else:
+            etas = np.linspace(0.55, 0.65, 20)
+        stats = eta_scan(model, n, L, v_0, num_equil, num_measure, etas)
+        np.savetxt('{}_stats.txt'.format(model), list(stats))
 
 if __name__ == '__main__':
     plot_vicsek(vicsek_model_factory(model='angular',
