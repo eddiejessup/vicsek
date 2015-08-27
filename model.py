@@ -65,7 +65,7 @@ class AngularVicsekModel(BaseVicsekModel):
     def iterate(self):
         self.th[...] = vicsek_angular(self.r, self.th, self.L, self.r_v,
                                       self.eta)
-        BaseVicsekModel.iterate(self)
+        super(AngularVicsekModel, self).iterate()
 
 
 class VectorialVicsekModel(BaseVicsekModel):
@@ -73,4 +73,4 @@ class VectorialVicsekModel(BaseVicsekModel):
     def iterate(self):
         self.th[...] = vicsek_vectorial(self.r, self.th, self.L, self.r_v,
                                         self.eta)
-        BaseVicsekModel.iterate(self)
+        super(VectorialVicsekModel, self).iterate()
