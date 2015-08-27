@@ -106,17 +106,15 @@ def make_disordered_snapshot():
 
 def get_vicsek_stats():
     for eta in np.linspace(0.0, 0.8, 40):
-        model = vicsek_model_factory(model='angular', n=2048, L=32.0, eta=eta, v_0=0.5)
-
+        m = vicsek_model_factory(model='angular', n=2048, L=32.0, eta=eta, v_0=0.5)
         # Equilibrate
         for _ in range(100):
-            model.iterate()
-
+            m.iterate()
         # Take measurements
         mags = []
         for _ in range(1000):
-            model.iterate()
-            mags.append(model.macro_u_mag)
+            m.iterate()
+            mags.append(m.macro_u_mag)
         print(eta, np.mean(mags), sem(mags), np.var(mags),
               np.var(mags) / np.sqrt(len(mags)))
 
