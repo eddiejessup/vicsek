@@ -41,17 +41,16 @@ def make_illustration_snapshot():
     r_i = model.r[i_source]
     c = plt.Circle(r_i, radius=model.r_v, fill=False, edgecolor='red')
     ax.add_patch(c)
-    C = np.zeros([model.n])
-    C[i_source] = 1.0
+    colors = np.zeros([model.n])
+    colors[i_source] = 1.0
     i_neighbs = model._neighbs(i_source)
     for i_neighb in i_neighbs:
-        C[i_neighb] = 0.5
+        colors[i_neighb] = 0.5
 
     s = 2.0
     ax.quiver(model.r[:, 0], model.r[:, 1],
               s * model.L * model.u[:, 0], s * model.L * model.u[:, 1],
-              C,
-              pivot='mid', edgecolor='none')
+              colors, pivot='mid', edgecolor='none')
     ax.axis('off')
 
     plt.savefig('vicsek_snapshot_demo.pdf', bbox_inches='tight',
