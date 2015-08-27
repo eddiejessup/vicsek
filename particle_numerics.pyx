@@ -3,7 +3,7 @@ from ciabatta import vector
 cimport numpy as np
 cimport cython
 import cmath
-from ciabatta.cell_list import intro
+from cellulist import cell_list
 
 
 @cython.cdivision(True)
@@ -16,7 +16,7 @@ def vicsek_angular(np.ndarray[np.float_t, ndim=2] r,
         complex comp
         np.ndarray[np.float_t, ndim=1] th_vic = th.copy()
         np.ndarray[np.float_t, ndim=1] noise = np.random.uniform(-np.pi, np.pi, size=th.shape[0])
-        tuple res = intro.get_inters(r, L, r_v)
+        tuple res = cell_list.get_inters(r, L, r_v)
         np.ndarray[int, ndim=2] inters = res[0]
         np.ndarray[int, ndim=1] intersi = res[1]
     for i_1 in range(th.shape[0]):
@@ -37,7 +37,7 @@ def vicsek_vectorial(np.ndarray[np.float_t, ndim=2] r,
         complex comp
         np.ndarray[np.float_t, ndim=1] th_vic = th.copy()
         np.ndarray[np.float_t, ndim=1] noise = np.random.uniform(-np.pi, np.pi, size=th.shape[0])
-        tuple res = intro.get_inters(r, L, r_v)
+        tuple res = cell_list.get_inters(r, L, r_v)
         np.ndarray[int, ndim=2] inters = res[0]
         np.ndarray[int, ndim=1] intersi = res[1]
     for i_1 in range(th.shape[0]):
