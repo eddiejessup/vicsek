@@ -20,7 +20,6 @@ def plot_vicsek(model, n):
         q.set_offsets(model.r)
         q.set_UVC(*(model.L * model.u.T))
         fig.canvas.draw()
-    return model.macro_u_mag()
 
 
 def make_illustration_snapshot():
