@@ -7,7 +7,7 @@ import numpy
 setup(
     cmdclass={'build_ext': build_ext},
     ext_modules=[
-        Extension("vicsek/particle_numerics", ["vicsek/particle_numerics.pyx"]),
+        Extension("vicsek.particle_numerics", ["vicsek/particle_numerics.pyx"]),
     ],
     include_dirs=[numpy.get_include()],
 )

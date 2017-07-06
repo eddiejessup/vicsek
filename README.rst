@@ -12,11 +12,21 @@ As in most situations when messing around with a Python package, I recommend wor
 
 If you don't use a virtual environment then you can prepend the `pip` commands with `sudo` if they don't work (try without first). But be aware that this is discouraged because it could mess up the python environment used by your operating system.
 
-First, while inside the virtual environment you wish to use, and in the top level (also known as the 'root') of the repository, install the dependencies to build and run the code:
+First, clone this repository:
+
+```bash
+git clone https://github.com/eddiejessup/vicsek.git
+```
+
+Now go into the top level (also known as the 'root') of the repository (inside the `vicsek` directory where you ran `git clone`).
+
+While inside the virtual environment you wish to use, install the dependencies needed to build, run and test the code:
 
 ```bash
 pip install -r requirements.txt
 ```
+
+If this fails with errors saying things like 'permission denied', probably you aren't inside a virtualenv, so you need to activate one, or, if you're feeling lazy, add `sudo` to the beginning of the command.
 
 Now, again in the root of the repository, compile the Cython extension for the core numerics:
 
@@ -26,4 +36,12 @@ python setup.py build_ext --inplace
 
 You should now have a file ending in `.so` inside the `vicsek` directory. Now check you can run the tests, by going into the root and running `pytest`. If the test pass, then that's better than if they had failed.
 
-See `examples.py` for some illustrations of how to use the package.
+Usage
+=====
+
+See `examples.py` for some illustrations.
+
+Authors
+=======
+
+Elliot Marsden
