@@ -1,6 +1,7 @@
 *.pdf
 *.pyc
 .DS_Store
-particle_numerics.c
+vicsek/particle_numerics.c
 *.so
 build/
+.cache/

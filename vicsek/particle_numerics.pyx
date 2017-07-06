@@ -1,7 +1,8 @@
+import cmath
+
 import numpy as np
 cimport numpy as np
 cimport cython
-import cmath
 from cellulist import cell_list
 
 

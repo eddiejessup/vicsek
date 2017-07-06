@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
+
 import numpy as np
-from particle_numerics import vicsek_angular, vicsek_vectorial
+
+from .particle_numerics import vicsek_angular, vicsek_vectorial
 
 
 class BaseVicsekModel(object):
