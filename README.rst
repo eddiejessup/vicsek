@@ -8,10 +8,6 @@ Intended for Python 3, but I've had a skim through the code and I can't see anyt
 Installation
 ============
 
-As in most situations when messing around with a Python package, I recommend working inside a Python virtual environment (often shortened to 'virtualenv'). [Here](http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/) is an explanation of how and why to use them.
-
-If you don't use a virtual environment then you can prepend the `pip` commands with `sudo` if they don't work (try without first). But be aware that this is discouraged because it could mess up the python environment used by your operating system.
-
 First, clone this repository:
 
 ```bash
@@ -19,6 +15,10 @@ git clone https://github.com/eddiejessup/vicsek.git
 ```
 
 Now go into the top level (also known as the 'root') of the repository (inside the `vicsek` directory where you ran `git clone`).
+
+As in most situations when messing around with a Python package, I recommend working inside a Python virtual environment (often shortened to 'virtualenv'). [Here](http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/) is an explanation of how and why to use them.
+
+If you don't use a virtual environment then you can prepend the `pip` commands with `sudo` if they don't work (try without first). But this is discouraged because it could mess up the Python environment used by your operating system.
 
 While inside the virtual environment you wish to use, install the dependencies needed to build, run and test the code:
 
